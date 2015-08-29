@@ -33,11 +33,15 @@ Note: Based on Windows 7
 
 2. Extract the zip somewhere you’ll remember, like `C:\tools\apache-tomcat-8.0.26`
 
-3. Set `CATALINA_HOME` to your Tomcat directory
-  1. Open up your Environment Variables
-    1. Start > Computer
-    2. Right-click Computer > Properties
-    3. Advanced system settings > Environment variables
-  2. Under System variables, click "New"
-  3. In `Variable name` write `CATALINA_HOME`, in `Variable value` write `C:\tools\apache-tomcat-8.0.26` (or wherever you extracted your Tomcat folder to)
-  4. 
+3. Set `CATALINA_HOME` to your Tomcat directory and add `%CATALINA_HOME%\bin` to your PATH.
+  1. Open up your [Environment Variables](http://www.nextofwindows.com/how-to-addedit-environment-variables-in-windows-7)
+  2. Under System variables, click `New`
+  3. In `Variable name` write `CATALINA_HOME` <br>In `Variable value` write `C:\tools\apache-tomcat-8.0.26` (or wherever you extracted your Tomcat folder) <br><br> ![CATALINA_HOME](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/catalina-home.png)<br><br>
+  4. Click `OK`
+  5. Under System variables, find the PATH variable and click `Edit`
+  6. Add `;%CATALINA_HOME%\bin` to the end of the input (Don't forget the semi-colon!). It should look something like this:<br><br>![PATH](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/edit-path.png)<br><br>
+  7. Click `OK`
+
+4. Open up **Command prompt** (Start > Run > cmd) and type "startup". You should see a console window open.
+
+5. Open your favorite web browser and navigate to http://localhost:8080/ . You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-running.png)
