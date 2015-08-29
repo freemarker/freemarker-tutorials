@@ -44,4 +44,4 @@ Note: Based on Windows 7
 
 4. Open up **Command prompt** (Start > Run > cmd) and type "startup". You should see a console window open.
 
-5. Open your favorite web browser and navigate to http://localhost:8080/ . You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-running.png)
+5. Open your favorite web browser and navigate to [http://localhost:8080/](http://localhost:8080/). You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-running.png)
