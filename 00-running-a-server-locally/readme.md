@@ -20,7 +20,7 @@ Many different servers will run JEE webapps and they all have their various pros
 
 You are more than welcome to use another sever, such as [JBoss](http://www.jboss.org/) or [GlassFish](https://glassfish.java.net/), but all these tutorials will be referencing Tomcat paths.
 
-## Step 1: Download and Install Tomcat
+## Download and Install Tomcat
 
 At the time of this writing, the latest stable version of Tomcat is **8.0.26**.
 
@@ -49,8 +49,17 @@ Note: Based on Windows 7
 
 5. Open your favorite web browser and navigate to [http://localhost:8080/](http://localhost:8080/). You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-running.png)
 
-### Mac Users
+### OS X Users
 
-1. If you haven’t already done so, install [Homebrew](http://brew.sh/). Homebrew is similar to [APT](https://en.wikipedia.org/wiki/Advanced_Packaging_Tool) and facilitates better easier package management.
+1. If you haven’t already done so, install [Homebrew](http://brew.sh/). Homebrew is similar to [APT](https://en.wikipedia.org/wiki/Advanced_Packaging_Tool) and facilitates easier package management.
 2. Install Tomcat with Homebrew (Open up Terminal and type `brew install tomcat`)
 3. In Terminal, navigate to `/usr/local/Cellar/tomcat/8.0.26/libexec/bin` and type `./startup.sh`
+4. Open your favorite web browser and navigate to [http://localhost:8080/](http://localhost:8080/). You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-osx.png)
+
+### Linux Users
+
+No access to a Linux box at the moment, but pull requests are welcome :)
+
+## Conclusion
+
+Remember where you installed Tomcat! We will need to update the configuration in the next tutorial.
