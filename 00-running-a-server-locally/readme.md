@@ -33,15 +33,24 @@ Note: Based on Windows 7
 
 2. Extract the zip somewhere you’ll remember, like `C:\tools\apache-tomcat-8.0.26`
 
-3. Set `CATALINA_HOME` to your Tomcat directory and add `%CATALINA_HOME%\bin` to your PATH.
+3. Create a new environment variable named `CATALINA_HOME` and set it to your Tomcat directory. Then and add `%CATALINA_HOME%\bin` to your PATH. Like so: <br>
   1. Open up your [Environment Variables](http://www.nextofwindows.com/how-to-addedit-environment-variables-in-windows-7)
   2. Under System variables, click `New`
-  3. In `Variable name` write `CATALINA_HOME` <br>In `Variable value` write `C:\tools\apache-tomcat-8.0.26` (or wherever you extracted your Tomcat folder) <br><br> ![CATALINA_HOME](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/catalina-home.png)<br><br>
+  3. In `Variable name` write `CATALINA_HOME` <br>In `Variable value` write `C:\tools\apache-tomcat-8.0.26` (or wherever you extracted your Tomcat folder). It should look something like this: <br><br> ![CATALINA_HOME](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/catalina-home.png)<br><br>
   4. Click `OK`
   5. Under System variables, find the PATH variable and click `Edit`
-  6. Add `;%CATALINA_HOME%\bin` to the end of the input (Don't forget the semi-colon!). It should look something like this:<br><br>![PATH](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/edit-path.png)<br><br>
+  6. Add `;%CATALINA_HOME%\bin` to the end of the input (Don’t forget the semi-colon!). It should look something like this:<br><br>![PATH](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/edit-path.png)<br><br>
   7. Click `OK`
 
 4. Open up **Command prompt** (Start > Run > cmd) and type "startup". You should see a console window open.
 
+  * (If you get an error like `'startup' is not recognized as an internal or external command`, log in and out and that should fix it)
+  * Note: A notification from Windows firewall may pop up. It’s safe to allow access for private networks.
+
 5. Open your favorite web browser and navigate to [http://localhost:8080/](http://localhost:8080/). You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-running.png)
+
+### Mac Users
+
+1. If you haven’t already done so, install [Homebrew](http://brew.sh/). Homebrew is similar to [APT](https://en.wikipedia.org/wiki/Advanced_Packaging_Tool) and facilitates better easier package management.
+2. Install Tomcat with Homebrew (Open up Terminal and type `brew install tomcat`)
+3. In Terminal, navigate to `/usr/local/Cellar/tomcat/8.0.26/libexec/bin` and type `./startup.sh`
