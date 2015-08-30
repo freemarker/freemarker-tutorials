@@ -40,7 +40,7 @@ Open up a console window (Command prompt for Windows users or Terminal for OS X 
 mvn compile war:inplace
 ```
 
-(If you don’t have Maven, follow the installation instructions here: [Maven in 5 minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html))
+(If you don’t have Maven, follow the installation instructions here: [Installing Java and Maven](../00-installing-java-and-maven/))
 
 This will download the dependencies and compile the Java files.
 
@@ -69,17 +69,13 @@ Inside `hello-world.xml`, add the following (Replace **PATH_TO_FREEMARKER_TUTORI
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<Context
-  docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp"
-  path=""
-  reloadable="true" />
+<Context docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp" path="" reloadable="true" />
 ```
 
 You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
 
 ![Running FreeMarker site](images/hello-world.png)
 
-(Disclaimer: The above configuration should NOT be used for a production webapp. This is just for local development. There are many [configuration options for securing your Tomcat server](https://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Context), and you should read about it before you deploy anything.)
 
 ### A note about context files
 
@@ -103,7 +99,6 @@ First, a summary of the files and directories:
       FreeMarkerTutorials/
         config/
           AppConfig.java
-          CharsetFilter.java
           CustomFreeMarkerView.java
           CustomFreeMarkerViewResolver.java
           WebMvcConfig.java
@@ -133,13 +128,13 @@ All JEE webapps should follow the `src/main/java` and `src/main/webapp` director
 
 ### web.xml, 404.html, error.html
 
-Sources
+Sources:
 
 * [web.xml](src/main/webapp/WEB-INF/web.xml)
 * [404.html](src/main/webapp/WEB-INF/404.html)
 * [error.html](src/main/webapp/WEB-INF/error.html)
 
-Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/Web.xml)). The inside of `<web-app></web-app>` can be empty, but I used it to define the error pages:
+Web.xml is required by Tomcat ([read more here if you’re curious](http://wiki.metawerx.net/wiki/Web.xml).) The inside of `<web-app></web-app>` can be empty, but I used it to define the error pages:
 
 ```xml
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -160,7 +155,7 @@ Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/We
 
 ### AppInitializer.java
 
-AppInitializer.java [source](src/main/java/AppInitializer.java) tells Spring where to look for the webapp configuration. Historically this was handled by a `servlet.xml` file. Pretty standard stuff—not much to see here. (You would have this file for any Spring MVC project)
+AppInitializer.java ([source](src/main/java/FreeMarkerTutorials/AppInitializer.java)) tells Spring where to look for the webapp configuration. Historically this was handled by a `servlet.xml` file. Pretty standard stuff—not much to see here. (You would have this file for any Spring MVC project)
 
 ```java
 public class AppInitializer implements WebApplicationInitializer {
@@ -181,3 +176,19 @@ public class AppInitializer implements WebApplicationInitializer {
     }
 }
 ```
+
+### AppConfig.java
+
+AppConfig.java ([source](src/main/java/FreeMarkerTutorials/config/AppConfig.java)) is pretty boring. It just tells Spring where to look for the `@Configuration` classes.
+
+```java
+@Configuration
+@ComponentScan(basePackages = "FreeMarkerTutorials")
+public class AppConfig {
+
+}
+```
+
+### WebMvcConfig.java
+
+WebMvcConfig.java ([source](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java))
