@@ -26,15 +26,15 @@ If you don’t, you risk your site having embarrassing encoding issues (ever see
 
 Every editor is different and some set different default encodings for different file types. For example if you’re using Eclipse, go through **each file type** and make sure the default encoding is set to UTF-8 for each extension:
 
-![UTF-8 Eclipse](https://raw.githubusercontent.com/freemarker/tutorials/master/01-hello-world/images/eclipse-utf-8.png)
+![UTF-8 Eclipse](images/eclipse-utf-8.png)
 
 ## Step 1: Download or clone the FreeMarker Tutorials project
 
-[Download the FreeMarker Tutorials Github project](https://github.com/freemarker/freemarker-tutorials/archive/master.zip) or clone it using git (`git clone https://github.com/freemarker/freemarker-tutorials.git`)
+[Download the FreeMarker Tutorials Github project](https://github.com/freemarker/tutorials/archive/master.zip) or clone it using git (`git clone https://github.com/freemarker/tutorials.git`)
 
 ## Step 2: Compile the Hello World project
 
-Open up a console window (Command prompt for Windows users or Terminal for OS X users) and navigate to the `freemarker-tutorials/01-hello-world` directory. Run `mvn compile war:inplace`.
+Open up a console window (Command prompt for Windows users or Terminal for OS X users) and navigate to the `tutorials/01-hello-world` directory. Run `mvn compile war:inplace`.
 
 ```bsh
 01-hello-world> mvn compile war:inplace
