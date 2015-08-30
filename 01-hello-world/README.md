@@ -14,7 +14,7 @@ If you aren’t sure how to run Tomcat locally, please review the [Running a ser
 
 ## Tutorial notes
 
-This project only contains mostly the *minimum* dependencies for a FreeMarker webapp. Other staple dependencies like [log4j](http://logging.apache.org/log4j/2.x/) and [Joda time](http://www.joda.org/joda-time/) will be used in subsequent tutorials.
+This project contains mostly the *minimum* dependencies for a FreeMarker webapp. Other staple dependencies like [log4j](http://logging.apache.org/log4j/2.x/) and [Joda time](http://www.joda.org/joda-time/) will be used in subsequent tutorials.
 
 First we will set up and run the project, then we will go into details on what each file does.
 
