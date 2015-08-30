@@ -4,10 +4,10 @@ This is a collection of tutorials to help you get started with FreeMarker web de
 
 ## Prerequisites
 
-Before you start on these tutorials you should have the following installed *and configured*:
+Before you start on these tutorials you should have the following installed and configured:
 
 * Java 7+
-* [Maven v3.2+](http://maven.apache.org/install.html) 
+* [Maven v3.2+](http://maven.apache.org/install.html)
 * [NodeJS v0.12.0+](http://nodejs.org/)
 
 ## Target audience
