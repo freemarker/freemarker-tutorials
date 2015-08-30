@@ -4,9 +4,7 @@ There are many tutorials out there on how to install Java and Maven, but we’re
 
 ## Installing Java
 
-Maven requires Java to be installed so we’ll do that one first.
-
-Note: At the time of this writing, the latest stable release of Java is 1.8.0_60.
+Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60.)
 
 ### Windows
 
@@ -29,9 +27,9 @@ Check if you already have Java installed by opening up a terminal window and run
 ```bash
 $ java -version
 
-java version "1.8.0_05"
-Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
-Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ```
 
 As long as you have Java 1.7 or higher, you’ll be fine.
@@ -39,14 +37,13 @@ As long as you have Java 1.7 or higher, you’ll be fine.
 If you don’t have Java installed, install Java with [Homebrew](http://brew.sh/). If you haven’t already, install Homebrew and run the following commands:
 
 ```bash
+brew update
 brew tap caskroom/cask
 brew install brew-cask
 brew cask install java
 ```
 
-Because Java is installed for all users, you will need administrator access to complete the install.
-
-(It’s a massive download (over 200MB) so it will take awhile.)
+It’s a massive download (over 200MB) so it will take awhile. Once installation is complete, restart your Mac to get all the updated settings
 
 ## Installing Maven
 
@@ -63,3 +60,23 @@ By default Maven looks for a `pom.xml` file in the root of your project and runs
 ### Windows
 
 ### OS X
+
+Using terminal, install Maven with [Homebrew](http://brew.sh/):
+
+```bash
+brew update
+brew install maven
+```
+
+Restart your Mac once installation is complete. Open up terminal again and verify your Maven install by running `mvn -v`. You should see something like this:
+
+```bash
+$ mvn -v
+
+Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
+Maven home: /usr/local/Cellar/maven/3.3.3/libexec
+Java version: 1.8.0_60, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
+```
