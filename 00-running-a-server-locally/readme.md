@@ -53,7 +53,7 @@ Note: Based on Windows 7
 
 1. If you haven’t already done so, install [Homebrew](http://brew.sh/). Homebrew is similar to [APT](https://en.wikipedia.org/wiki/Advanced_Packaging_Tool) and facilitates easier package management.
 2. Install Tomcat with Homebrew (Open up Terminal and type `brew install tomcat`)
-3. In Terminal, navigate to `/usr/local/Cellar/tomcat/8.0.26/libexec/bin` and type `./startup.sh`
+3. To start up Tomcat run `catalina start`
 4. Open your favorite web browser and navigate to [http://localhost:8080/](http://localhost:8080/). You should see something like this:<br><br> ![Tomcat running](https://raw.githubusercontent.com/freemarker/tutorials/master/00-running-a-server-locally/images/tomcat-osx.png)
 
 ### Linux Users
