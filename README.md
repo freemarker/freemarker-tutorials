@@ -18,15 +18,19 @@ FreeMarker is a Java templating engine and can be used as a [view resolver](http
 
 ## Tutorials
 
+[Installing Java and Maven](00-installing-java-and-maven/)
+
+You can skip this if you already have Java and Maven installed.
+
 [Running a server locally](00-running-a-server-locally/)
 
-You can skip this if you are already comfortable starting up and configuring Tomcat, but other tutorials will reference settings in this tutorial.
+You can skip this if you are already comfortable starting up and configuring Tomcat, but other tutorials will reference these settings in this tutorial.
 
 [FreeMarker “Hello World”](01-hello-world/)
 
 A basic overview of starting up and configuring a FreeMarker webapp with Spring MVC. Topics include:
 * Java-based Spring configuration
 * Configuring FreeMarker settings
-* Ensure your app has proper UTF-8 charset configuration
+* Ensuring your app has proper UTF-8 charset configuration
 * Deploying to different contexts using Tomcat
 * Changing locale and time zones using FreeMarker

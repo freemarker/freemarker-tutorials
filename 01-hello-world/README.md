@@ -42,17 +42,7 @@ mvn compile war:inplace
 
 (If you don’t have Maven, follow the installation instructions here: [Maven in 5 minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html))
 
-This will download the dependencies and compile the Java files.  We use `war:inplace` so that Maven puts the compiled Java resources and libraries in the webapp directory instead of copying everything to a separate `/target/` directory.  More on this in the next step when we create our Tomcat context file.
-
-### Short Maven overview
-
-If you already know what Maven is you can skip this whole section.
-
-If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools.
-
-Maven ensures developers working on a project together are using the same dependencies. It handles downloading dependencies and putting them in a consistent location where your Java compiler can find them. It is also used to bundle JAR and WAR files, and can be used to version your own projects.
-
-Maven looks for a `pom.xml` file in the root of your project and runs commands based on what is in that file. (There are more elaborate ways to set up Maven builds, but since this is a FreeMarker tutorial and not a Maven tutorial, that topic won’t be covered.)
+This will download the dependencies and compile the Java files.
 
 ## Step 3: Point Tomcat at your webapp directory
 
@@ -93,11 +83,7 @@ You should now be able to access the FreeMarker Hello World webapp at [http://lo
 
 ### A note about context files
 
-In `hello-world.xml`, you'll remember we set the path to `/src/main/webapp`.  This is where `war:inplace` comes in handy. By pointing at the `/src/main/webapp` folder, we do not have to recompile the project every single time we make a change to a frontend file (e.g. CSS, JavaScript, or FreeMarker).
-
-If you make a change a Java file, you will still need to recompile with `mvn compile war:inplace` to see your updates.
-
-Additionally, **/hello-world/** part of the URL is **based on the name of the XML file we created**. If we renamed `hello-world.xml` to `banana-bunnies.xml`, then our webapp would be accessible at http://localhost:8080/banana-bunnies/.  If you wanted to deploy the webapp to http://localhost:8080, you would rename the xml file to (case-sensitive) `ROOT.xml`.
+It is important to note that the **/hello-world/** part of the URL is **based on the name of the XML file we created**. If we renamed `hello-world.xml` to `banana-bunnies.xml`, then our webapp would be accessible at http://localhost:8080/banana-bunnies/.  If you wanted to deploy the webapp to http://localhost:8080, you would rename the xml file to (case-sensitive) `ROOT.xml`.
 
 Context files are convenient because you can deploy different webapps to the same domain without needing to redeploy the whole domain.
 
@@ -153,7 +139,7 @@ Sources
 * [404.html](src/main/webapp/WEB-INF/404.html)
 * [error.html](src/main/webapp/WEB-INF/error.html)
 
-Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/Web.xml)). The inside of `<web-app></web-app>` could be empty, but I used it to define the error pages:
+Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/Web.xml)). The inside of `<web-app></web-app>` can be empty, but I used it to define the error pages:
 
 ```xml
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -174,7 +160,7 @@ Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/We
 
 ### AppInitializer.java
 
-The file just tells the webapp where to look for the app configuration (
+AppInitializer.java [source](src/main/java/AppInitializer.java) tells Spring where to look for the webapp configuration. Historically this was handled by a `servlet.xml` file. Pretty standard stuff—not much to see here. (You would have this file for any Spring MVC project)
 
 ```java
 public class AppInitializer implements WebApplicationInitializer {
@@ -190,9 +176,8 @@ public class AppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("FreeMarkerTutorials.config");
+        context.setConfigLocation("FreeMarkerTutorials.config"); // this maps to src/main/java/FreeMarkerTutorials/config/
         return context;
     }
-
 }
 ```
