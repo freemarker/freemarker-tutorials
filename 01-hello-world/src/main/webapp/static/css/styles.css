@@ -1,0 +1,33 @@
+html {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    margin: 0;
+}
+
+.example-page {
+    padding: 20px;
+}
+
+.example-page h1 {
+    margin-top: 0;
+}
+
+.example-page strong {
+    color: rebeccapurple;
+}
+
+.example-page code {
+    color: #413eff;
+    display: inline-block;
+    padding: 0 4px;
+    font-size: 14px;
+}
+
+
+.example-page p {
+    margin: 0 0 8px;
+}
