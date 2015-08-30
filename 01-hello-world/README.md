@@ -48,15 +48,11 @@ This will download the dependencies and compile the Java files.  We use `war:inp
 
 If you already know what Maven is you can skip this whole section.
 
-If you don’t know what Maven is, I’ll only give a short explanation here as there are many other resources devoted to explaining the intricacies of Maven.
-
 If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools.
 
 Maven ensures developers working on a project together are using the same dependencies. It handles downloading dependencies and putting them in a consistent location where your Java compiler can find them. It is also used to bundle JAR and WAR files, and can be used to version your own projects.
 
 Maven looks for a `pom.xml` file in the root of your project and runs commands based on what is in that file. (There are more elaborate ways to set up Maven builds, but since this is a FreeMarker tutorial and not a Maven tutorial, that topic won’t be covered.)
-
-In summary: We’ll be using Maven to download dependencies and build our Java project.
 
 ## Step 3: Point Tomcat at your webapp directory
 
@@ -78,38 +74,37 @@ cd /usr/local/Cellar/tomcat/8.0.26/libexec/conf/Catalina/localhost
 vi hello-world.xml
 ```
 
-Inside `hello-world.xml`, add the following:
+Inside `hello-world.xml`, add the following (Replace **PATH_TO_FREEMARKER_TUTORIALS** with
+    wherever you have the FreeMarker tutorials project.:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Replace PATH_TO_FREEMARKER_TUTORIALS with
-    wherever you have the FreeMarker tutorials project. -->
 <Context
   docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp"
   path=""
   reloadable="true" />
 ```
 
-This is where `war:inplace` comes in handy. By pointing at the `/src/main/webapp` folder, we do not have to recompile the project every single time we make a change to a frontend file (e.g. CSS, JavaScript, or FreeMarker).
-
-If you make a change a Java file, you will still need to recompile with `mvn compile war:inplace` to see your updates.
-
-(Disclaimer: The above configuration should NOT be used for a production webapp. This is just for local development. There are many [configuration options for securing your Tomcat server](https://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Context), and you should read about it before you deploy anything.)
-
 You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
 
 ![Running FreeMarker site](images/hello-world.png)
 
+(Disclaimer: The above configuration should NOT be used for a production webapp. This is just for local development. There are many [configuration options for securing your Tomcat server](https://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Context), and you should read about it before you deploy anything.)
+
 ### A note about context files
 
-The **/hello-world/** part of the URL is based on the name of the XML file we created. If we renamed `hello-world.xml` to `banana-bunnies.xml`, then our webapp would be accessible at http://localhost:8080/banana-bunnies/.  If you wanted to deploy the webapp to http://localhost:8080, you would rename the xml file to (case-sensitive) `ROOT.xml`.
+In `hello-world.xml`, you'll remember we set the path to `/src/main/webapp`.  This is where `war:inplace` comes in handy. By pointing at the `/src/main/webapp` folder, we do not have to recompile the project every single time we make a change to a frontend file (e.g. CSS, JavaScript, or FreeMarker).
+
+If you make a change a Java file, you will still need to recompile with `mvn compile war:inplace` to see your updates.
+
+Additionally, **/hello-world/** part of the URL is **based on the name of the XML file we created**. If we renamed `hello-world.xml` to `banana-bunnies.xml`, then our webapp would be accessible at http://localhost:8080/banana-bunnies/.  If you wanted to deploy the webapp to http://localhost:8080, you would rename the xml file to (case-sensitive) `ROOT.xml`.
 
 Context files are convenient because you can deploy different webapps to the same domain without needing to redeploy the whole domain.
 
 For example, if you had a website with a “Special Offers” section, you could separate it into it’s own webapp and deploy the `special-offers` app without affecting the main website.
 
 * http://example.com - Runs off `ROOT.xml`
-* http://example/special-offers/ - Runs off `special-offers.xml`
+* http://example.com/special-offers/ - Runs off `special-offers.xml`
 
 ## Step 4: Digging into the files
 
@@ -150,4 +145,54 @@ First, a summary of the files and directories:
 
 All JEE webapps should follow the `src/main/java` and `src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this project.)
 
-### web.xml
+### web.xml, 404.html, error.html
+
+Sources
+
+* [web.xml](src/main/webapp/WEB-INF/web.xml)
+* [404.html](src/main/webapp/WEB-INF/404.html)
+* [error.html](src/main/webapp/WEB-INF/error.html)
+
+Web.xml is required by Tomcat ([read more here](http://wiki.metawerx.net/wiki/Web.xml)). The inside of `<web-app></web-app>` could be empty, but I used it to define the error pages:
+
+```xml
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                            http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+        version="3.1"
+        metadata-complete="true">
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/404.html</location>
+    </error-page>
+    <error-page>
+        <location>/WEB-INF/error.html</location>
+    </error-page>
+</web-app>
+```
+
+### AppInitializer.java
+
+The file just tells the webapp where to look for the app configuration (
+
+```java
+public class AppInitializer implements WebApplicationInitializer {
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        WebApplicationContext context = getContext();
+        servletContext.addListener(new ContextLoaderListener(context));
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+    }
+
+    private AnnotationConfigWebApplicationContext getContext() {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.setConfigLocation("FreeMarkerTutorials.config");
+        return context;
+    }
+
+}
+```
