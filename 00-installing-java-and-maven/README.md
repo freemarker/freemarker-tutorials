@@ -6,35 +6,39 @@ There are many tutorials out there on how to install Java and Maven, but we’re
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60.)
 
-### Windows
+First check if you already have Java installed by opening up a console window (Terminal for OS X or Command prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
 
-Check if you already have Java installed by opening up command prompt and running `java -version`. You should see something like this:
 
-```console
-C:\Users\username>java -version
+```bash
+$ java -version
 
 java version "1.8.0_45"
 Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
 ```
 
-As long as you have Java 1.7 or higher, you’ll be fine.
+As long as you have Java 1.7 or higher, that’s fine and you can skip the “Installing Java” section.  If you have Java 1.6 or lower, follow the installation instructions below.
 
-### OS X
+If you *don’t* have Java installed you’ll see an error message:
+* Windows users will see a message like: <br>`'Java' is not recognized as an internal or external command, operable program or batch file.`
+* OS X users will see a message like:<br> `-bash: Java: command not found`
 
-Check if you already have Java installed by opening up a terminal window and running `java -version`. You should see something like this:
+### Installing Java on Windows
 
-```bash
-$ java -version
+1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use the direct links here:
 
-java version "1.8.0_60"
-Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
-Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
-```
+    * [Windows x64 (64-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-x64.exe)
+    * [Windows x86 (32-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-i586.exe)
 
-As long as you have Java 1.7 or higher, you’ll be fine.
+    (If you aren’t sure which version you need, download the 32-bit one.)
 
-If you don’t have Java installed, install Java with [Homebrew](http://brew.sh/). If you haven’t already, install Homebrew and run the following commands:
+2. Once the file has downloaded open it up and follow the installation instructions.
+
+### Installing Java on OS X
+
+Install Java with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+
+Once Homebrew is installed, run the following commands in Terminal:
 
 ```bash
 brew update
@@ -43,7 +47,7 @@ brew install brew-cask
 brew cask install java
 ```
 
-It’s a massive download (over 200MB) so it will take awhile. Once installation is complete, restart your Mac to get all the updated settings
+It’s a massive download (over 200MB) so it will take awhile. Once installation is complete, **restart your Mac** to get all the updated settings.
 
 ## Installing Maven
 
