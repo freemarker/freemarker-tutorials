@@ -61,15 +61,15 @@ In summary: We’ll be using Maven to download dependencies and build our Java p
 In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat server. Make sure your server is still running!
 
 * Windows users: Open up command prompt, type `startup` and press enter
-* OS X users: Open up terminal, type `catalina start`
+* OS X users: Open up terminal, type `catalina start` and press enter
 
-Navigate to your Tomcat installation folder, and find the `conf/Catalina/localhost` directory and create an XML file called **hello-world.xml**.
+Navigate to your Tomcat installation folder, and find the `conf/Catalina/localhost` directory and create a context file called **hello-world.xml**.
 
 If you followed the previous tutorial’s instructions, Windows users can navigate directly to the folder by copying `%CATALINA_HOME%\conf\Catalina\localhost` into a Windows explorer window.
 
-![Windows 7 XML file](https://raw.githubusercontent.com/freemarker/tutorials/master/01-hello-world/images/win7-catalina-home.png)
+![Windows 7 XML file](images/win7-catalina-home.png)
 
-And OS X users can do this in terminal (Replace **8.0.26** with your version of Tomcat):
+OS X users can do this in terminal (Replace **8.0.26** with your version of Tomcat):
 
 ```bsh
 cd /usr/local/Cellar/tomcat/8.0.26/libexec/conf/Catalina/localhost
@@ -80,21 +80,23 @@ Inside hello-world.xml, add the following:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Replace PATH_TO_FREEMARKER_TUTORIALS with
+    wherever you have the FreeMarker tutorials project. -->
 <Context
   docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp"
   path=""
   reloadable="true" />
 ```
 
-Replace PATH_TO_FREEMARKER_TUTORIALS with wherever you have the FreeMarker tutorials project.
-
 This is where `war:inplace` comes in handy. By pointing at the `/src/main/webapp` folder, we do not have to recompile the project every single time we make a change to a frontend file (e.g. CSS, JavaScript, or FreeMarker).
 
-(Note: If you make a change a Java file, you will need to recompile with `mvn compile war:inplace` to see your updates.)
+If you make a change a Java file, you will still need to recompile with `mvn compile war:inplace` to see your updates.
+
+(Disclaimer: The above configuration should NOT be used for a production webapp. This is just for local development. There are many [configuration options for securing your Tomcat server](https://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Context), and you should read about it before you deploy anything.)
 
 You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
 
-(Disclaimer: The above configuration should NOT be used for a production webapp. This is just for local development. There [are more configurations options for securing your Tomcat server](https://tomcat.apache.org/tomcat-8.0-doc/security-howto.html#Context), and you should read about it before you deploy anything.)
+![Running FreeMarker site](images/hello-world.png)
 
 ### A note about context files
 
@@ -102,7 +104,7 @@ The **/hello-world/** part of the URL is based on the name of the XML file we cr
 
 Context files are convenient because you can deploy different webapps to the same domain without needing to redeploy the whole domain.
 
-For example, if you had a website with a "Special Offers" section, you could separate it into it’s own webapp and deploy the "special offers" app without affecting the main website.
+For example, if you had a website with a “Special Offers” section, you could separate it into it’s own webapp and deploy the `special-offers` app without affecting the main website.
 
-* http://example.com - Runs off ROOT.xml
-* http://example/special-offers/ - Runs off special-offers.xml
+* http://example.com - Runs off `ROOT.xml`
+* http://example/special-offers/ - Runs off `special-offers.xml`
