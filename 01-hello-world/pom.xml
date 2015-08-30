@@ -12,7 +12,6 @@
         <freemarker.version>2.3.23</freemarker.version>
         <spring.version>4.2.0.RELEASE</spring.version>
         <servletApi.version>3.1.0</servletApi.version>
-        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>

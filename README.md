@@ -6,8 +6,8 @@ This is a collection of tutorials to help you get started with FreeMarker web de
 
 Before you start on these tutorials you should have the following installed and configured:
 
-* Java 8 (if you have Java 7, you’ll have to modify the pom.xml files to use the lower version)
-* [Maven v3.2+](http://maven.apache.org/install.html)
+* Java 7+
+* [Maven v3.2+](http://maven.apache.org/install.html) (Installation instructions: [Maven in 5 minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html))
 * [NodeJS v0.12.0+](http://nodejs.org/)
 
 ## Tutorials
