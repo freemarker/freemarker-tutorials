@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
         <title>Hello, world!</title>
         <link rel="stylesheet" type="text/css" href="${globals.staticPath}/css/styles.css">
     </head>
@@ -15,10 +14,9 @@
                 <li>¥ | &yen; | &#165;</li>
             </ul>
 
-            <p>This should have some Japanese text: 日本語 が 大好き！</p>
-
             <h2>Changing locale and timezone</h2>
 
+            <p><em>Note: You shouldn’t actually change the locale or time zone of a webapp in the view. This is best handled by the backend.</em></p>
             <h3>Default locale</h3>
             <@printLocaleAndTime />
 
@@ -52,5 +50,5 @@
 </#macro>
 
 <#macro printLocaleAndTime>
-    <p>The <code>locale</code> of this project is currently <strong>${.locale}</strong> and the current time is <strong>${.now?string.full}</strong></p>
+    <p>The <code>locale</code> is currently <strong>${.locale}</strong> and the current time is <strong>${.now?string.full}</strong></p>
 </#macro>
