@@ -37,16 +37,18 @@ Every editor is different and some set different default encodings for different
 Open up a console window (Command prompt for Windows users or Terminal for OS X users) and navigate to the `tutorials/01-hello-world` directory. Run `mvn compile war:inplace`.
 
 ```bsh
-01-hello-world> mvn compile war:inplace
+mvn compile war:inplace
 ```
 
-This will download the dependencies and compile the Java files.  We use `war:inplace` so that Maven puts the compiled Java resources and libraries in the webapp directory instead of copying everything to a separate `/target/` directory.  More on this in the next step.
+(If you don’t have Maven, follow the installation instructions here: [Maven in 5 minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html))
+
+This will download the dependencies and compile the Java files.  We use `war:inplace` so that Maven puts the compiled Java resources and libraries in the webapp directory instead of copying everything to a separate `/target/` directory.  More on this in the next step when we create our Tomcat context file.
 
 ### Short Maven overview
 
 If you already know what Maven is you can skip this whole section.
 
-If you don’t know what Maven is, I’ll only give a short explanation here as there are a lot of other Maven resources out there.
+If you don’t know what Maven is, I’ll only give a short explanation here as there are many other resources devoted to explaining the intricacies of Maven.
 
 If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools.
 
@@ -65,7 +67,7 @@ In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat se
 
 Navigate to your Tomcat installation folder, and find the `conf/Catalina/localhost` directory and create a context file called **hello-world.xml**.
 
-If you followed the previous tutorial’s instructions, Windows users can navigate directly to the folder by copying `%CATALINA_HOME%\conf\Catalina\localhost` into a Windows explorer window.
+If you followed the previous tutorial’s instructions, Windows users can navigate directly to the folder by copying and pasting `%CATALINA_HOME%\conf\Catalina\localhost` into a Windows explorer window.
 
 ![Windows 7 XML file](images/win7-catalina-home.png)
 
@@ -76,7 +78,7 @@ cd /usr/local/Cellar/tomcat/8.0.26/libexec/conf/Catalina/localhost
 vi hello-world.xml
 ```
 
-Inside hello-world.xml, add the following:
+Inside `hello-world.xml`, add the following:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -108,3 +110,44 @@ For example, if you had a website with a “Special Offers” section, you could
 
 * http://example.com - Runs off `ROOT.xml`
 * http://example/special-offers/ - Runs off `special-offers.xml`
+
+## Step 4: Digging into the files
+
+First, a summary of the files and directories:
+
+```
+01-hello-world/
+  src/
+    java/
+      FreeMarkerTutorials/
+        config/
+          AppConfig.java
+          CharsetFilter.java
+          CustomFreeMarkerView.java
+          CustomFreeMarkerViewResolver.java
+          WebMvcConfig.java
+        controller/
+          HelloWorld.java
+        AppInitializer.java
+    main/
+      webapp/
+        static/
+          css/
+            styles.css
+          js/
+            hello-world.js
+        WEB-INF/
+          ftl/
+            private/
+              hello-world.ftl
+            templates/
+              globals.ftl
+              include-common.ftl
+          404.html
+          error.html
+          web.xml
+```
+
+All JEE webapps should follow the `src/main/java` and `src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this project.)
+
+### web.xml
