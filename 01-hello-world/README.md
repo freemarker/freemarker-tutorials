@@ -6,6 +6,12 @@ This tutorial assumes you have a Tomcat server running locally (or a server you�
 
 If you aren’t sure how to run Tomcat locally, please review the [Running a server locally](../00-running-a-server-locally) tutorial.
 
+** Libraries Used**
+
+* [FreeMarker 2.3.23](http://freemarker.org/docs/)
+* [Spring MVC 4.2](https://spring.io/blog/2015/07/31/spring-framework-4-2-goes-ga)
+* Javax Servlet API 3.1.0
+
 ## Tutorial Notes
 
 This project only contains the *bare minimum* dependencies for a FreeMarker webapp. Other staple dependencies like [log4j](http://logging.apache.org/log4j/2.x/) and [Joda time](http://www.joda.org/joda-time/) will be used in subsequent tutorials.
@@ -20,11 +26,6 @@ Every editor is different and some set different default encodings for different
 
 ![UTF-8 Eclipse](https://raw.githubusercontent.com/freemarker/tutorials/master/01-hello-world/images/eclipse-utf-8.png)
 
-### Libraries Used
-
-* [FreeMarker 2.3.23](http://freemarker.org/docs/)
-* [Spring MVC 4.2](https://spring.io/blog/2015/07/31/spring-framework-4-2-goes-ga)
-
 ## Step 1: Download or Clone the tutorials project
 
 [Download the FreeMarker Tutorials Github project](https://github.com/freemarker/tutorials/archive/master.zip) or clone it using git (`git clone https://github.com/freemarker/tutorials.git`)
@@ -37,7 +38,7 @@ Open up a console window (Command prompt for Windows users or Terminal for OS X 
 01-hello-world> mvn install
 ```
 
-This will download the dependencies and create some various files in a `target` folder in your project.
+This will download the dependencies and create some various files in a `target` folder in your project directory. 
 
 ### Short Maven Overview
 
@@ -53,4 +54,4 @@ tl;dr: We’ll be using Maven to download dependencies and build our project.
 
 ## Step 3: Point Tomcat at your webapp
 
-In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat server. 
+In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat server.

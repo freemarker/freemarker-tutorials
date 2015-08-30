@@ -17,19 +17,20 @@
             <h2>Changing locale and timezone</h2>
 
             <p><em>Note: You shouldn’t actually change the locale or time zone of a webapp in the view. This is best handled by the backend.</em></p>
+
             <h3>Default locale</h3>
+
             <@printLocaleAndTime />
 
             <h3>de_DE (German)</h3>
-            <@changeLocale newLocale="de_DE" />
 
+            <@changeLocale newLocale="de_DE" />
             <@printLocaleAndTime />
 
             <h3>ja_JP (Japanese)</h3>
 
             <@changeLocale newLocale="ja_JP" />
             <@changeTimeZone newTimezone="Asia/Tokyo" />
-
             <@printLocaleAndTime />
         </div>
         <script src="${globals.staticPath}/js/hello-world.js"></script>
