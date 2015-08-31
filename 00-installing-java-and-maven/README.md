@@ -2,16 +2,6 @@
 
 There are many tutorials out there on how to install Java and Maven, but we’re going to add another one since they are required for following these tutorials.
 
-Quick links if you want to skip the overviews:
-
-* Windows
-    * [Installing Java on Windows](#installing-java-on-windows)
-    * [Installing Maven on Windows](#installing-maven-on-windows)
-* OS X
-    * [Installing Java on OS X](#installing-java-on-os-x)
-    * [Installing Maven on OS X](#installing-maven-on-os-x)
-
-
 ## Installing Java
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60 a.k.a Java 8 update 60)
