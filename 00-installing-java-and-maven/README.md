@@ -33,7 +33,8 @@ Note: Close ALL command prompts before you install Java.
 
     (If you aren’t sure which version you need, download the x86 version.)
 
-2. Once the file has downloaded open it up and follow the installation instructions. (this will install both the JRE and the JDK):<br><br>
+2. Once the file has downloaded open it up and follow the installation instructions. (This will install both the JRE and the JDK):
+
     ![Step 1](images/windows/java01.png)
 
     ![Step 2](images/windows/java02.png)
@@ -41,7 +42,7 @@ Note: Close ALL command prompts before you install Java.
     **Remember where you installed Java JDK because you will need the path in the next step.**
 
     ![Step 3](images/windows/java03.png)
-    
+
     ![Step 4](images/windows/java04.png)
 
     After Java is installed you will need to add Java to your environment variables. (Note: Make sure ALL your command prompts are closed before you edit the environment variables)
@@ -58,9 +59,9 @@ Note: Close ALL command prompts before you install Java.
 
     ![step 7](images/windows/java07.png)
 
- 7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
+7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
 
- 8. Open up command prompt and type `echo %JAVA_HOME% && where java` and you should see this:
+8. Open up command prompt and type `echo %JAVA_HOME% && where java` and you should see this:
 
     ![step 8](images/windows/java08.png)
 
