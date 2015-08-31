@@ -85,8 +85,8 @@ Context files are convenient because you can deploy different webapps to the sam
 
 For example, if you had a website with a “Special Offers” section, you could separate it into it’s own webapp and deploy the `special-offers` app without affecting the main website.
 
-* http://example.com - Runs off `ROOT.xml`
-* http://example.com/special-offers/ - Runs off `special-offers.xml`
+* http://example.com - Deloyed using `ROOT.xml`
+* http://example.com/special-offers/ - Deployed using `special-offers.xml`
 
 ## Step 4: Digging into the files
 
@@ -239,12 +239,12 @@ SessionLocaleResolver localeResolver() {
 
 #### Explanations for `freeMarkerViewResolver()`
 
-```java
+* ```java
 resolver.setPrefix("/views/");
 resolver.setSuffix(".ftl");
 ```
 
-This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
+    This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
 
 - - -
 
