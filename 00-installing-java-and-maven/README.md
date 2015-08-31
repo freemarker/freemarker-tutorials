@@ -1,12 +1,14 @@
 # Installing Java and Maven
 
-There are many tutorials out there on how to install Java and Maven, but we’re going to add another one since they are required for following these tutorials.
+Java is required for any FreeMarker development and Maven is commonly used to build FreeMarker webapps. Please make sure you have both Java and Maven installed before you continue on any other tutorials.
 
 ## Installing Java
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60 a.k.a Java 8 update 60)
 
-First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
+First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter.
+
+If you have Java installed you should see something like this:
 
 
 ```bash
@@ -17,11 +19,19 @@ Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
 Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ```
 
-As long as you have Java 1.7 or higher, that’s fine and you can skip the “Installing Java” section.  If you have Java 1.6 or lower, follow the installation instructions below.
+As long as you have Java 1.7 or higher you can skip the “Installing Java” section.
 
 If you *don’t* have Java installed you’ll see an error message:
-* Windows users will see a message like: <br>`'Java' is not recognized as an internal or external command, operable program or batch file.`
-* OS X users will see a message like:<br> `-bash: Java: command not found`
+* Windows users will see a message like:
+
+    ```
+    'Java' is not recognized as an internal or external command, operable program or batch file.
+    ```
+* OS X users will see a message like:
+
+    ```
+    -bash: Java: command not found
+    ```
 
 ### Installing Java on Windows
 
@@ -104,6 +114,38 @@ brew cask install java
     ```
 
 ## Installing Maven
+
+(Note: At the time of this writing the latest stable release of Maven is 3.3.3)
+
+First check if you already have Maven installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `mvn -v`.  
+
+If you have Maven installed you should see something like this:
+
+```bash
+
+$ mvn -v
+
+Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
+Maven home: /usr/local/Cellar/maven/3.3.3/libexec
+Java version: 1.8.0_60, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
+```
+
+As long as you have Maven 3.1 or higher you can skip the “Installing Maven” section.
+
+If you *don’t* have Maven installed you’ll see an error message:
+* Windows users will see a message like:
+
+    ```
+    'mvn' is not recognized as an internal or external command, operable program or batch file.
+    ```
+* OS X users will see a message like:
+
+    ```
+    -bash: mvn: command not found
+    ```
 
 ### Short Maven Overview
 
