@@ -1,12 +1,14 @@
 # Installing Java and Maven
 
-There are many tutorials out there on how to install Java and Maven, but we’re going to add another one since they are required for following these tutorials.
+Java is required for any FreeMarker development and Maven is commonly used to build FreeMarker webapps. Please make sure you have both Java and Maven installed before you continue on any other tutorials.
 
 ## Installing Java
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60 a.k.a Java 8 update 60)
 
-First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
+First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter.
+
+If you have Java installed you should see something like this:
 
 
 ```bash
@@ -17,31 +19,41 @@ Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
 Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ```
 
-As long as you have Java 1.7 or higher, that’s fine and you can skip the “Installing Java” section.  If you have Java 1.6 or lower, follow the installation instructions below.
+As long as you have Java 1.7 or higher you can skip the “Installing Java” section.
 
 If you *don’t* have Java installed you’ll see an error message:
-* Windows users will see a message like: <br>`'Java' is not recognized as an internal or external command, operable program or batch file.`
-* OS X users will see a message like:<br> `-bash: Java: command not found`
+* Windows users will see a message like:
+
+    ```
+    'Java' is not recognized as an internal or external command, operable program or batch file.
+    ```
+* OS X users will see a message like:
+
+    ```
+    -bash: Java: command not found
+    ```
 
 ### Installing Java on Windows
 
 Note: Close ALL command prompts before you install Java.
 
-1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use the direct links here:
+1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
-    * [Windows x64 (64-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-x64.exe)
-    * [Windows x86 (32-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-i586.exe)
+    ![Step 0](images/windows/java00.png)
 
-    (If you aren’t sure which version you need, download the 32-bit one.)
+    (If you aren’t sure which version you need, download the x86 version.)
 
-2. Once the file has downloaded open it up and follow the installation instructions. (this will install both the JRE and the JDK):<br><br>
-    ![Step 1](images/windows/java01.png)<br><br>
-    ![Step 2](images/windows/java02.png)<br>
+2. Once the file has downloaded open it up and follow the installation instructions. (This will install both the JRE and the JDK):
+
+    ![Step 1](images/windows/java01.png)
+
+    ![Step 2](images/windows/java02.png)
 
     **Remember where you installed Java JDK because you will need the path in the next step.**
 
-    ![Step 3](images/windows/java03.png)<br><br>
-    ![Step 4](images/windows/java04.png)<br>
+    ![Step 3](images/windows/java03.png)
+
+    ![Step 4](images/windows/java04.png)
 
     After Java is installed you will need to add Java to your environment variables. (Note: Make sure ALL your command prompts are closed before you edit the environment variables)
 
@@ -57,9 +69,9 @@ Note: Close ALL command prompts before you install Java.
 
     ![step 7](images/windows/java07.png)
 
- 7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
+7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
 
- 8. Open up command prompt and type `echo %JAVA_HOME% && where java` and you should see this:
+8. Open up command prompt and type `echo %JAVA_HOME% && where java` and you should see this:
 
     ![step 8](images/windows/java08.png)
 
@@ -67,24 +79,77 @@ Note: Close ALL command prompts before you install Java.
 
 ### Installing Java on OS X
 
-Install Java with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+1. Install Java with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
 
-Once Homebrew is installed, run the following commands in Terminal:
+    Once Homebrew is installed, run the following commands in Terminal:
 
-```bash
+    ```bash
 brew update
 brew tap caskroom/cask
 brew install brew-cask
 brew cask install java
-```
+    ```
 
-It’s a massive download (over 200MB) so it will take awhile. Once installation is complete, **restart your Mac** to get all the updated settings.
+    It’s a massive download (over 200MB) so it will take awhile.
+
+2. Once installation is complete, **restart your Mac** (or log out and log in) to get all the updated settings.
+
+3. After restarting, open up your bash profile by doing `vi ~/.bash_profile` in Terminal
+
+4. Edit your bash profile so it looks like this: (press `i` to insert text and then press `esc` then `:wq` to save)
+
+    ```bash
+    export JAVA_HOME=$(/usr/libexec/java_home)
+
+  PATH=$PATH:$JAVA_HOME
+    ```
+
+5. After saving confirm JAVA_HOME is set to the same version as what you installed with Homebrew:
+
+    ```bash
+    $ echo $JAVA_HOME
+
+    /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+
+    ```
 
 ## Installing Maven
 
-But first...
+(Note: At the time of this writing the latest stable release of Maven is 3.3.3)
+
+First check if you already have Maven installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `mvn -v`.  
+
+If you have Maven installed you should see something like this:
+
+```bash
+
+$ mvn -v
+
+Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
+Maven home: /usr/local/Cellar/maven/3.3.3/libexec
+Java version: 1.8.0_60, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
+```
+
+As long as you have Maven 3.1 or higher you can skip the “Installing Maven” section.
+
+If you *don’t* have Maven installed you’ll see an error message:
+* Windows users will see a message like:
+
+    ```
+    'mvn' is not recognized as an internal or external command, operable program or batch file.
+    ```
+* OS X users will see a message like:
+
+    ```
+    -bash: mvn: command not found
+    ```
 
 ### Short Maven Overview
+
+If you already know what Maven is you can skip this section.
 
 If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools. If you aren’t familiar with any of them then: Welcome to the world of dependency management!
 
@@ -98,24 +163,26 @@ By default Maven looks for a `pom.xml` file in the root of your project and runs
 
 ### Installing Maven on OS X
 
-Install Maven with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+1. Install Maven with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
 
-Once Homebrew is installed, run the following commands in Terminal:
+    Once Homebrew is installed, run the following commands in Terminal:
 
-```bash
-brew update
+    ```bash
+    brew update
 brew install maven
-```
+    ```
 
-Restart your Mac once installation is complete. Open up terminal again and verify your Maven install by running `mvn -v`. You should see something like this:
+2.  Restart your Mac once installation is complete.
 
-```bash
-$ mvn -v
+3. After restarting, open up Terminal again and verify your Maven install by running `mvn -v`. You should see something like this:
 
-Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
-Maven home: /usr/local/Cellar/maven/3.3.3/libexec
-Java version: 1.8.0_60, vendor: Oracle Corporation
-Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
-```
+    ```bash
+    $ mvn -v
+
+    Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
+    Maven home: /usr/local/Cellar/maven/3.3.3/libexec
+    Java version: 1.8.0_60, vendor: Oracle Corporation
+    Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
+    Default locale: en_US, platform encoding: UTF-8
+    OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
+    ```
