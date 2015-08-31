@@ -46,35 +46,35 @@ This will download the dependencies and compile the Java files.
 
 ## Step 3: Point Tomcat at your webapp directory
 
-In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat server. Make sure your server is still running!
+1. In the [previous tutorial](../00-running-a-server-locally) we set up a Tomcat server. Make sure your server is still running!
 
-* Windows users: Open up command prompt, type `startup` and press enter
-* OS X users: Open up terminal, type `catalina start` and press enter
+    * Windows users: Open up Command Prompt, type `catalina start` and press enter
+    * OS X users: Open up Terminal, type `catalina start` and press enter
 
-Navigate to your Tomcat installation folder, and find the `conf/Catalina/localhost` directory and create a context file called **hello-world.xml**.
+2. Navigate to your Tomcat installation folder, and find the `conf/Catalina/localhost` directory and create a context file called **hello-world.xml**.
 
-If you followed the previous tutorial’s instructions, Windows users can navigate directly to the folder by copying and pasting `%CATALINA_HOME%\conf\Catalina\localhost` into a Windows explorer window.
+    * Windows users: If you followed the previous tutorial’s instructions, Windows users can navigate directly to the folder by copying and pasting `%CATALINA_HOME%\conf\Catalina\localhost` into a Windows explorer window.
 
-![Windows 7 XML file](images/win7-catalina-home.png)
+        ![Windows 7 XML file](images/win7-catalina-home.png)
 
-OS X users can do this in terminal (Replace **8.0.26** with your version of Tomcat):
+    * OS X users: In Terminal you can do this (Replace **8.0.26** with your version of Tomcat):
 
-```bsh
-cd /usr/local/Cellar/tomcat/8.0.26/libexec/conf/Catalina/localhost
-vi hello-world.xml
-```
+        ```bsh
+        cd /usr/local/Cellar/tomcat/8.0.26/libexec/conf/Catalina/localhost
+        vi hello-world.xml
+        ```
 
-Inside `hello-world.xml`, add the following (Replace **PATH_TO_FREEMARKER_TUTORIALS** with
+3. Inside `hello-world.xml`, add the following (Replace **PATH_TO_FREEMARKER_TUTORIALS** with
     wherever you have the FreeMarker tutorials project.:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Context docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp" path="" reloadable="true" />
-```
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <Context docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp" path="" reloadable="true" />
+    ```
 
-You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
+4. You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
 
-![Running FreeMarker site](images/hello-world.png)
+    ![Running FreeMarker site](images/hello-world.png)
 
 
 ### A note about context files
