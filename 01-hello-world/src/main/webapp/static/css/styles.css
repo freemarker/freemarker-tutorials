@@ -16,21 +16,6 @@ body {
     margin-top: 0;
 }
 
-.example-page h3 {
-    margin-bottom: 5px;
-}
-
-.example-page strong {
-    color: rebeccapurple;
-}
-
-.example-page code {
-    color: #413eff;
-    display: inline-block;
-    padding: 0 4px;
-    font-size: 14px;
-}
-
 .example-page p {
     margin: 0 0 8px;
 }
