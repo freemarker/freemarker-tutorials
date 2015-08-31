@@ -30,7 +30,7 @@ Every editor is different and some set different default encodings for different
 
 ## Step 1: Download or clone the FreeMarker Tutorials project
 
-[Download and extract the FreeMarker Tutorials Github project](https://github.com/freemarker/tutorials/archive/master.zip) or clone it using git (`git clone https://github.com/freemarker/tutorials.git`)
+[Download and extract the FreeMarker Tutorials Github project](https://github.com/freemarker/freemarker-tutorials/archive/master.zip) or clone it using git (`git clone https://github.com/freemarker/freemarker-tutorials.git`)
 
 ## Step 2: Compile the Hello World project
 
