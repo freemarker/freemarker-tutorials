@@ -188,3 +188,46 @@ public class AppConfig {
 ### WebMvcConfig.java
 
 WebMvcConfig.java ([source](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java))
+
+
+### HelloWorld.java
+
+HelloWorld.java ([source](src/main/java/FreeMarkerTutorials/controller/HelloWorld.java)) is a controller whose job is to tell
+
+```java
+@Controller
+public class HelloWorld {
+
+    @RequestMapping("/")
+    public String loadExample(Model model) {
+        model.addAttribute("pageTitle", "Example Freemarker Page");
+        return "hello-world";
+    }
+}
+```
+
+- - -
+
+```java
+@RequestMapping("/")
+public String loadExample(Model model) {
+
+}
+```
+This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.  If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
+
+- - -
+```java
+model.addAttribute("pageTitle", "Example Freemarker Page");
+```
+This adds the variable `pageTitle` to the model which gets sent to the view. This can now be used by the FreeMarker template and we can output the value by writing `${pageTitle}` in hello-world.ftl
+
+- - -
+```java
+return "hello-world";
+```
+This tells the view resolver what file to look for based on our FreeMarker configuration settings. If we changed this to say `return "foo-bar";` then the resolver would look for `/WEB-INF/ftl/private/foo-bar.ftl`.
+
+We don’t have to specify the file extension because we already specified `resolver.setSuffix(".ftl");` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
+
+- - -
