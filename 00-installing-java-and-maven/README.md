@@ -27,21 +27,22 @@ If you *don’t* have Java installed you’ll see an error message:
 
 Note: Close ALL command prompts before you install Java.
 
-1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use the direct links here:
+1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
-    * [Windows x64 (64-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-x64.exe)
-    * [Windows x86 (32-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-i586.exe)
+    ![Step 0](images/windows/java00.png)
 
-    (If you aren’t sure which version you need, download the 32-bit one.)
+    (If you aren’t sure which version you need, download the x86 version.)
 
 2. Once the file has downloaded open it up and follow the installation instructions. (this will install both the JRE and the JDK):<br><br>
-    ![Step 1](images/windows/java01.png)<br><br>
-    ![Step 2](images/windows/java02.png)<br>
+    ![Step 1](images/windows/java01.png)
+
+    ![Step 2](images/windows/java02.png)
 
     **Remember where you installed Java JDK because you will need the path in the next step.**
 
-    ![Step 3](images/windows/java03.png)<br><br>
-    ![Step 4](images/windows/java04.png)<br>
+    ![Step 3](images/windows/java03.png)
+    
+    ![Step 4](images/windows/java04.png)
 
     After Java is installed you will need to add Java to your environment variables. (Note: Make sure ALL your command prompts are closed before you edit the environment variables)
 
