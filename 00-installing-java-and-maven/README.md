@@ -61,7 +61,7 @@ Note: Close ALL command prompts before you install Java.
 
     ![step 5](images/windows/java05.png)
 
-5. In environment variables, find the Path variable and edit it:
+5. Next we have to add JAVA_HOME to our path. In environment variables, find the Path variable and edit it:
 
     ![step 6](images/windows/java06.png)
 
@@ -160,6 +160,34 @@ Maven ensures developers working on a project together are using the same librar
 By default Maven looks for a `pom.xml` file in the root of your project and runs commands based on what is in that file. You can tell Maven to run just about anything. The `pom.xml` file can also be split up into smaller files since xml files tend to become quite verbose.
 
 ### Installing Maven on Windows
+
+1. Download Maven from https://maven.apache.org/download.cgi:
+
+    ![Maven step 1](images/windows/maven01.png)
+
+2. Extract the zip file into some where you will remember, like `C:\tools\apache-maven-3.3.3` (Make sure it’s not `C:\tools\apache-maven-3.3.3\apache-maven-3.3.3`):
+
+    ![Maven step 2](images/windows/maven02.png)
+
+3. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set MAVEN_HOME equal to the place where you just extracted your zip file:
+
+    ![Maven step 3](images/windows/maven03.png)
+
+4. Next we have to add JAVA_HOME to our path. In environment variables, find the Path variable and edit it:
+
+    ![step 4](images/windows/java06.png)
+
+5. At the end of “Variable value” add `;%MAVEN_HOME%\bin` (Don’t forget the semi-colon!)
+
+    ![step 5](images/windows/maven04.png)
+
+7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
+
+8. Open up command prompt and type `echo %MAVEN_HOME% && where mvn` and you should see this:
+
+    ![step 6](images/windows/maven05.png)
+
+    If you do not see this you may have had a command prompt open while editing your environment variables and you will need restart your computer and try again.
 
 ### Installing Maven on OS X
 
