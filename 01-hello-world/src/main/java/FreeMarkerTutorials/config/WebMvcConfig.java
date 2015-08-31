@@ -28,7 +28,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CustomFreeMarkerViewResolver freeMarkerViewResolver() {
         CustomFreeMarkerViewResolver resolver = new CustomFreeMarkerViewResolver();
-        resolver.setPrefix("/private/");
+        resolver.setPrefix("/views/");
         resolver.setSuffix(".ftl");
         resolver.setCache(false); // don't disable the cache in production!
 

@@ -114,17 +114,17 @@ First, a summary of the files and directories:
             hello-world.js
         WEB-INF/
           ftl/
-            private/
-              hello-world.ftl
             templates/
               globals.ftl
               include-common.ftl
+            views/
+              hello-world.ftl
           404.html
           error.html
           web.xml
 ```
 
-All JEE webapps should follow the `src/main/java` and `src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this project.)
+All JEE webapps should follow the `/src/main/java` and `/src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this project.)
 
 ### web.xml, 404.html, error.html
 
@@ -189,10 +189,148 @@ public class AppConfig {
 
 WebMvcConfig.java ([source](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java))
 
+Relevant code:
+
+```java
+@Bean
+public CustomFreeMarkerViewResolver freeMarkerViewResolver() {
+    CustomFreeMarkerViewResolver resolver = new CustomFreeMarkerViewResolver();
+    resolver.setPrefix("/views/");
+    resolver.setSuffix(".ftl");
+    resolver.setCache(false); // don't disable the cache in production!
+
+    resolver.setContentType("text/html;charset=UTF-8");
+    resolver.setRequestContextAttribute("requestContext");
+
+    return resolver;
+}
+
+@Bean
+public FreeMarkerConfigurer freeMarkerConfigurer(WebApplicationContext applicationContext)
+        throws IOException, TemplateException {
+    FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+
+    configurer.setServletContext(applicationContext.getServletContext());
+
+    freemarker.template.Configuration configuration = configurer.createConfiguration();
+
+    configuration.addAutoInclude("/templates/include-common.ftl");
+    configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
+    configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
+    configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
+
+    configuration.setDefaultEncoding("UTF-8");
+    configuration.setOutputEncoding("UTF-8");
+    configuration.setURLEscapingCharset("UTF-8");
+
+    configurer.setConfiguration(configuration);
+
+    return configurer;
+}
+
+@Bean
+SessionLocaleResolver localeResolver() {
+    SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+    localeResolver.setDefaultLocale(Locale.US);
+
+    return localeResolver;
+}
+```
+
+#### Explanations for `freeMarkerViewResolver()`
+
+```java
+resolver.setPrefix("/views/");
+resolver.setSuffix(".ftl");
+```
+
+This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
+
+- - -
+
+```java
+resolver.setCache(false); // don't disable the cache in production!
+```
+
+By default the view resolver will cache view files. This means that when you edit a FreeMarker file you will not see the changes immediately after refreshing. When you are developing locally it is okay to disable the cache.
+
+- - -
+
+```java
+resolver.setContentType("text/html;charset=UTF-8");
+```
+
+This ensures the content type is text/html and the charset is UTF-8. This should always be set by the backend.
+
+Note: If you’ve used JSP you may have set the encoding like this in a JSP file:
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+```
+
+This is a very poor practice and is unfortunately a recommended approach in many JSP tutorials. This is wrong. Content type and encoding should NEVER, **EVER** be set in the view layer. *Ever*.
+
+By setting it in the view you risk ending up with inconsistent encoding across your webapp. Encoding issues quickly spiral out of control and are costly to fix. It is better to have one source of truth for encodings and let the controller handle changing the content type.
+
+- - -
+
+```java
+resolver.setRequestContextAttribute("requestContext");
+```
+
+This specifies how the name we will use to access our application’s `requestContext` properties. More on this later.
+
+#### Explanation for `freeMarkerConfigurer(WebApplicationContext applicationContext)`
+
+```java
+configuration.addAutoInclude("/templates/include-common.ftl");
+```
+
+This tells our FreeMarkerConfigurer to add `/WEB-INF/ftl/templates/include-common.ftl` to every FreeMarker file. It is the same as doing `<@include "/templates/include-common.ftl" />` at the top of every FreeMarker file.
+
+This is useful because it will allow frontend developers to define their own global imports. (This setting is commonly used for defining global layouts or shared macros)
+
+- - -
+
+```java
+configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
+```
+
+This allows us to omit the `/WEB-INF/ftl/` from every FreeMarker path we define. For example if we didn’t include this line we would have to change `resolver.setPrefix("/views/");` to `resolver.setPrefix("/WEB-INF/ftl/views/");`
+
+ We’re effectively saying “All our FreeMarker files will always be in this folder”. This also ensures the frontend developers will consistently put all their FreeMarker files in the `ftl` folder.
+
+ - - -
+
+ ```java
+ configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
+ ```
+
+ This should always be added for new projects. The FreeMarker documentation [explains it best](http://freemarker.org/docs/pgui_config_incompatible_improvements.html#autoid_44)
+
+ - - -
+
+```java
+configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
+```
+
+This setting simply formats the stack trace to a more readable format in a web browser. More information can be found in the [FreeMarker documentation](http://freemarker.org/docs/pgui_config_errorhandling.html).
+
+- - -
+
+```java
+configuration.setDefaultEncoding("UTF-8");
+configuration.setOutputEncoding("UTF-8");
+configuration.setURLEscapingCharset("UTF-8");
+```
+
+![UTF-8 all the things](images/all-the-things.jpg)
 
 ### HelloWorld.java
 
-HelloWorld.java ([source](src/main/java/FreeMarkerTutorials/controller/HelloWorld.java)) is a controller whose job is to tell
+HelloWorld.java ([source](src/main/java/FreeMarkerTutorials/controller/HelloWorld.java)) is a controller whose job is to send model data to the view based on the request.
+
+Relevant code:
 
 ```java
 @Controller
@@ -201,12 +339,13 @@ public class HelloWorld {
     @RequestMapping("/")
     public String loadExample(Model model) {
         model.addAttribute("pageTitle", "Example Freemarker Page");
+
         return "hello-world";
     }
 }
 ```
 
-- - -
+#### Explanations
 
 ```java
 @RequestMapping("/")
@@ -214,20 +353,24 @@ public String loadExample(Model model) {
 
 }
 ```
-This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.  If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
+This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.  
+
+If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
 
 - - -
 ```java
 model.addAttribute("pageTitle", "Example Freemarker Page");
 ```
-This adds the variable `pageTitle` to the model which gets sent to the view. This can now be used by the FreeMarker template and we can output the value by writing `${pageTitle}` in hello-world.ftl
+This adds the attribute `pageTitle` to the model which then gets sent to the view. This can now be used by our FreeMarker template (hello-world.ftl) and we can output the value by writing `${pageTitle}` in hello-world.ftl
 
 - - -
 ```java
 return "hello-world";
 ```
-This tells the view resolver what file to look for based on our FreeMarker configuration settings. If we changed this to say `return "foo-bar";` then the resolver would look for `/WEB-INF/ftl/private/foo-bar.ftl`.
+This tells the view resolver what file to look for based on our FreeMarker configuration settings. If we changed this to say `return "foo-bar";` then the resolver would look for `/WEB-INF/ftl/views/foo-bar.ftl`.
 
-We don’t have to specify the file extension because we already specified `resolver.setSuffix(".ftl");` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
+The view resolver knows to look in `/WEB-INF/ftl/views/` because we specified `resolver.setPrefix("/views/");` in our view resolver and `configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");` in our `FreeMarkerConfigurer` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
+
+Note that we don’t have to specify the file extension because we already specified `resolver.setSuffix(".ftl");` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
 
 - - -
