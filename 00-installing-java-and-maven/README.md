@@ -154,17 +154,3 @@ brew install maven
     Default locale: en_US, platform encoding: UTF-8
     OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
     ```
-
-3. After restarting, open up your bash profile by doing `vi ~/.bash_profile` in Terminal
-
-4. Edit your bash profile so it looks like this: (press `i` to insert text and then press `esc` then `:wq` to save)
-
-    ```bash
-    export JAVA_HOME=$(/usr/libexec/java_home)
-export M2_HOME=/user/apple/apache-maven-3.0.3
-export M2=$M2_HOME/bin
-
-PATH=$M2:$PATH:$JAVA_HOME
-    ```
-
- 4. Add Maven to your path
