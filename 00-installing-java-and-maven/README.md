@@ -2,6 +2,16 @@
 
 There are many tutorials out there on how to install Java and Maven, but we’re going to add another one since they are required for following these tutorials.
 
+Quick links if you want to skip the overviews:
+
+* Windows
+    * [Installing Java on Windows](#installing-java-on-windows)
+    * [Installing Maven on Windows](#installing-maven-on-windows)
+* OS X
+    * [Installing Java on OS X](#installing-java-on-os-x)
+    * [Installing Maven on OS X](#installing-maven-on-os-x)
+
+
 ## Installing Java
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60 a.k.a Java 8 update 60)
@@ -69,24 +79,45 @@ Note: Close ALL command prompts before you install Java.
 
 ### Installing Java on OS X
 
-Install Java with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+1. Install Java with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
 
-Once Homebrew is installed, run the following commands in Terminal:
+    Once Homebrew is installed, run the following commands in Terminal:
 
-```bash
+    ```bash
 brew update
 brew tap caskroom/cask
 brew install brew-cask
 brew cask install java
-```
+    ```
 
-It’s a massive download (over 200MB) so it will take awhile. Once installation is complete, **restart your Mac** to get all the updated settings.
+    It’s a massive download (over 200MB) so it will take awhile.
+
+2. Once installation is complete, **restart your Mac** (or log out and log in) to get all the updated settings.
+
+3. After restarting, open up your bash profile by doing `vi ~/.bash_profile` in Terminal
+
+4. Edit your bash profile so it looks like this: (press `i` to insert text and then press `esc` then `:wq` to save)
+
+    ```bash
+    export JAVA_HOME=$(/usr/libexec/java_home)
+
+  PATH=$PATH:$JAVA_HOME
+    ```
+
+5. After saving confirm JAVA_HOME is set to the same version as what you installed with Homebrew:
+
+    ```bash
+    $ echo $JAVA_HOME
+
+    /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+
+    ```
 
 ## Installing Maven
 
-But first...
-
 ### Short Maven Overview
+
+If you already know what Maven is you can skip this section.
 
 If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools. If you aren’t familiar with any of them then: Welcome to the world of dependency management!
 
@@ -100,24 +131,40 @@ By default Maven looks for a `pom.xml` file in the root of your project and runs
 
 ### Installing Maven on OS X
 
-Install Maven with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+1. Install Maven with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
 
-Once Homebrew is installed, run the following commands in Terminal:
+    Once Homebrew is installed, run the following commands in Terminal:
 
-```bash
-brew update
+    ```bash
+    brew update
 brew install maven
-```
+    ```
 
-Restart your Mac once installation is complete. Open up terminal again and verify your Maven install by running `mvn -v`. You should see something like this:
+2.  Restart your Mac once installation is complete.
 
-```bash
-$ mvn -v
+3. After restarting, open up Terminal again and verify your Maven install by running `mvn -v`. You should see something like this:
 
-Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
-Maven home: /usr/local/Cellar/maven/3.3.3/libexec
-Java version: 1.8.0_60, vendor: Oracle Corporation
-Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
-Default locale: en_US, platform encoding: UTF-8
-OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
-```
+    ```bash
+    $ mvn -v
+
+    Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
+    Maven home: /usr/local/Cellar/maven/3.3.3/libexec
+    Java version: 1.8.0_60, vendor: Oracle Corporation
+    Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre
+    Default locale: en_US, platform encoding: UTF-8
+    OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
+    ```
+
+3. After restarting, open up your bash profile by doing `vi ~/.bash_profile` in Terminal
+
+4. Edit your bash profile so it looks like this: (press `i` to insert text and then press `esc` then `:wq` to save)
+
+    ```bash
+    export JAVA_HOME=$(/usr/libexec/java_home)
+export M2_HOME=/user/apple/apache-maven-3.0.3
+export M2=$M2_HOME/bin
+
+PATH=$M2:$PATH:$JAVA_HOME
+    ```
+
+ 4. Add Maven to your path
