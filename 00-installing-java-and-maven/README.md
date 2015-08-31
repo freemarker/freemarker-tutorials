@@ -6,7 +6,7 @@ There are many tutorials out there on how to install Java and Maven, but we’re
 
 Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60.)
 
-First check if you already have Java installed by opening up a console window (Terminal for OS X or Command prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
+First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
 
 
 ```bash
@@ -25,6 +25,8 @@ If you *don’t* have Java installed you’ll see an error message:
 
 ### Installing Java on Windows
 
+Note: Close ALL command prompts before you install Java.
+
 1. Download Java from [Oracle’s download page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use the direct links here:
 
     * [Windows x64 (64-bit)](http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-x64.exe)
@@ -32,7 +34,13 @@ If you *don’t* have Java installed you’ll see an error message:
 
     (If you aren’t sure which version you need, download the 32-bit one.)
 
-2. Once the file has downloaded open it up and follow the installation instructions.
+2. Once the file has downloaded open it up and follow the installation instructions. (this will install both the JRE and the JDK):<br><br>
+    ![Step 1](images/windows/java01.png)<br><br>
+    ![Step 2](images/windows/java02.png)<br><br>
+    ![Step 3](images/windows/java03.png)<br><br>
+    ![Step 4](images/windows/java04.png)<br>
+
+3. After Java is installed you will need to add Java to your environment variables.
 
 ### Installing Java on OS X
 
@@ -51,6 +59,8 @@ It’s a massive download (over 200MB) so it will take awhile. Once installation
 
 ## Installing Maven
 
+But first...
+
 ### Short Maven Overview
 
 If you’ve used [NPM](https://www.npmjs.com/) or [Ant+Ivy](http://ant.apache.org/ivy/) or [Gradle](https://gradle.org/) or [NuGet](https://www.nuget.org/) or [Composer](https://getcomposer.org/) then know that Maven is similar to those tools. If you aren’t familiar with any of them then: Welcome to the world of dependency management!
@@ -61,11 +71,13 @@ Maven ensures developers working on a project together are using the same librar
 
 By default Maven looks for a `pom.xml` file in the root of your project and runs commands based on what is in that file. You can tell Maven to run just about anything. The `pom.xml` file can also be split up into smaller files since xml files tend to become quite verbose.
 
-### Windows
+### Installing Maven on Windows
 
-### OS X
+### Installing Maven on OS X
 
-Using terminal, install Maven with [Homebrew](http://brew.sh/):
+Install Maven with [Homebrew](http://brew.sh/). (If you don’t have Homebrew installed, you should absolutely install it. Homebrew is a package manager for OS X and keeps your packages consistently organized and versioned.)
+
+Once Homebrew is installed, run the following commands in Terminal:
 
 ```bash
 brew update
