@@ -57,11 +57,11 @@ Note: Close ALL command prompts before you install Java.
 
     After Java is installed you will need to add Java to your environment variables. (Note: Make sure ALL your command prompts are closed before you edit the environment variables)
 
-4. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set JAVA_HOME equal to your **jdk** path
+4. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set `JAVA_HOME` equal to your **jdk** path
 
     ![step 5](images/windows/java05.png)
 
-5. Next we have to add JAVA_HOME to our path. In environment variables, find the Path variable and edit it:
+5. Next we have to add `JAVA_HOME` to our path. In environment variables, find the Path variable and edit it:
 
     ![step 6](images/windows/java06.png)
 
@@ -169,11 +169,11 @@ By default Maven looks for a `pom.xml` file in the root of your project and runs
 
     ![Maven step 2](images/windows/maven02.png)
 
-3. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set MAVEN_HOME equal to the place where you just extracted your zip file:
+3. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set `MAVEN_HOME` equal to the place where you just extracted your zip file:
 
     ![Maven step 3](images/windows/maven03.png)
 
-4. Next we have to add JAVA_HOME to our path. In environment variables, find the Path variable and edit it:
+4. Next we have to add `MAVEN_HOME` to our path. In environment variables, find the Path variable and edit it:
 
     ![step 4](images/windows/java06.png)
 
