@@ -324,6 +324,8 @@ configuration.setOutputEncoding("UTF-8");
 configuration.setURLEscapingCharset("UTF-8");
 ```
 
+The explanation for this is simple:
+
 ![UTF-8 all the things](images/all-the-things.jpg)
 
 ### HelloWorld.java
