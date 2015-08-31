@@ -5,5 +5,5 @@
 -->
 
 
-<#assign context = rc.contextPath /><#-- This the the context the app was deployed to. -->
+<#assign context = requestContext.contextPath /><#-- This the the context the app was deployed to. -->
 <#assign staticPath = context + "/static">

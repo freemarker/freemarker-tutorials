@@ -15,6 +15,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
 
 @EnableWebMvc
 @Configuration
@@ -32,7 +33,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         resolver.setCache(false); // don't disable the cache in production!
 
         resolver.setContentType("text/html;charset=UTF-8");
-        resolver.setRequestContextAttribute("rc");
+        resolver.setRequestContextAttribute("requestContext");
 
         return resolver;
     }
@@ -43,10 +44,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
 
         configurer.setServletContext(applicationContext.getServletContext());
+
         freemarker.template.Configuration configuration = configurer.createConfiguration();
+
         configuration.addAutoInclude("/templates/include-common.ftl");
         configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
         configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
+        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
 
         configuration.setDefaultEncoding("UTF-8");
         configuration.setOutputEncoding("UTF-8");
