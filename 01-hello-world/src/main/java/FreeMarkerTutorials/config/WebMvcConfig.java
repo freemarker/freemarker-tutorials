@@ -62,7 +62,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
         configuration.setLocale(Locale.ENGLISH);
         configuration.setTagSyntax(configuration.ANGLE_BRACKET_TAG_SYNTAX); // ensure tags are angle brackets
-        configuration.setBooleanFormat("TRUE,FALSE");
         configuration.setWhitespaceStripping(true);
         configuration.setStrictBeanModels(false);
 
