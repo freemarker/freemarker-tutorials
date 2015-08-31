@@ -214,3 +214,7 @@ brew install maven
     Default locale: en_US, platform encoding: UTF-8
     OS name: "mac os x", version: "10.10.1", arch: "x86_64", family: "mac"
     ```
+
+ ## Next Steps
+
+ Continue to the next tutorial: [Running a server locally](../00-running-a-server-locally)
