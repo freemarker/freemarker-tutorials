@@ -282,7 +282,7 @@ This specifies how the name we will use to access our application’s `requestCo
 
 #### Explanation for `freeMarkerConfigurer(WebApplicationContext applicationContext)`
 
-```java
+> ```java
 configuration.addAutoInclude("/templates/include-common.ftl");
 ```
 
@@ -292,7 +292,7 @@ This is useful because it will allow frontend developers to define their own glo
 
 - - -
 
-```java
+> ```java
 configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
 ```
 
@@ -332,7 +332,7 @@ HelloWorld.java ([source](src/main/java/FreeMarkerTutorials/controller/HelloWorl
 
 Relevant code:
 
-```java
+> ```java
 @Controller
 public class HelloWorld {
 
@@ -347,7 +347,7 @@ public class HelloWorld {
 
 #### Explanations
 
-```java
+> ```java
 @RequestMapping("/")
 public String loadExample(Model model) {
 
@@ -358,13 +358,13 @@ This tells the server that when a user navigates to http://localhost:8080/hello-
 If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
 
 - - -
-```java
+> ```java
 model.addAttribute("pageTitle", "Example Freemarker Page");
 ```
 This adds the attribute `pageTitle` to the model which then gets sent to the view. This can now be used by our FreeMarker template (hello-world.ftl) and we can output the value by writing `${pageTitle}` in hello-world.ftl
 
 - - -
-```java
+> ```java
 return "hello-world";
 ```
 This tells the view resolver what file to look for based on our FreeMarker configuration settings. If we changed this to say `return "foo-bar";` then the resolver would look for `/WEB-INF/ftl/views/foo-bar.ftl`.
