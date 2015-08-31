@@ -1,6 +1,5 @@
 package FreeMarkerTutorials.config;
 
-//import freemarker.ext.jsp.TaglibFactory;
 import freemarker.ext.servlet.FreemarkerServlet;
 import freemarker.ext.servlet.HttpRequestParametersHashModel;
 import freemarker.ext.servlet.IncludePage;
