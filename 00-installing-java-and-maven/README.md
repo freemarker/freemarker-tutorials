@@ -4,7 +4,7 @@ There are many tutorials out there on how to install Java and Maven, but we’re
 
 ## Installing Java
 
-Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60.)
+Maven requires Java to be installed so we’ll do that one first. (Note: At the time of this writing, the latest stable release of Java is 1.8.0_60 a.k.a Java 8 update 60)
 
 First check if you already have Java installed by opening up a console window (Terminal for OS X or Command Prompt for Windows) and typing `java -version` then pressing enter. If you have Java installed you should see something like this:
 
@@ -12,9 +12,9 @@ First check if you already have Java installed by opening up a console window (T
 ```bash
 $ java -version
 
-java version "1.8.0_45"
-Java(TM) SE Runtime Environment (build 1.8.0_45-b14)
-Java HotSpot(TM) 64-Bit Server VM (build 25.45-b02, mixed mode)
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ```
 
 As long as you have Java 1.7 or higher, that’s fine and you can skip the “Installing Java” section.  If you have Java 1.6 or lower, follow the installation instructions below.
@@ -36,11 +36,34 @@ Note: Close ALL command prompts before you install Java.
 
 2. Once the file has downloaded open it up and follow the installation instructions. (this will install both the JRE and the JDK):<br><br>
     ![Step 1](images/windows/java01.png)<br><br>
-    ![Step 2](images/windows/java02.png)<br><br>
+    ![Step 2](images/windows/java02.png)<br>
+
+    **Remember where you installed Java JDK because you will need the path in the next step.**
+
     ![Step 3](images/windows/java03.png)<br><br>
     ![Step 4](images/windows/java04.png)<br>
 
-3. After Java is installed you will need to add Java to your environment variables.
+    After Java is installed you will need to add Java to your environment variables. (Note: Make sure ALL your command prompts are closed before you edit the environment variables)
+
+4. Open up environment variables ([tutorial on how to access your environment variables](../00-updating-environment-variables)) and set JAVA_HOME equal to your **jdk** path
+
+    ![step 5](images/windows/java05.png)
+
+5. In environment variables, find the Path variable and edit it:
+
+    ![step 6](images/windows/java06.png)
+
+6. At the end of “Variable value” add `;%JAVA_HOME%\bin` (Don’t forget the semi-colon!)
+
+    ![step 7](images/windows/java07.png)
+
+ 7. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
+
+ 8. Open up command prompt and type `echo %JAVA_HOME% && where java` and you should see this:
+
+    ![step 8](images/windows/java08.png)
+
+    If you do not see this you may have had a command prompt open while editing your environment variables and you will need restart your computer and try again.
 
 ### Installing Java on OS X
 
