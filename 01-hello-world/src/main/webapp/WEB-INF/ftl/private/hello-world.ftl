@@ -13,8 +13,6 @@
                 <li>® | &reg; | &#174;</li>
                 <li>¥ | &yen; | &#165;</li>
             </ul>
-
-            ${foobar}
         </div>
         <script src="${globals.staticPath}/js/hello-world.js"></script>
     </body>
