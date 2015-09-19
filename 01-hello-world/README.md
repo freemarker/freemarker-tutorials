@@ -118,7 +118,7 @@ All JEE webapps should follow the `/src/main/java` and `/src/main/webapp` direct
 
 ### web.xml
 
-Web.xml ([source](src/main/webapp/WEB-INF/web.xml)) is ([required by Tomcat](http://wiki.metawerx.net/wiki/Web.xml).) We’ll use web.xml in subsequent tutorials. For now the inside of `<web-app></web-app>` can be be empty.
+Web.xml ([source](src/main/webapp/WEB-INF/web.xml)) is [required by Tomcat](http://wiki.metawerx.net/wiki/Web.xml). We’ll use web.xml in subsequent tutorials. For now the inside of `<web-app></web-app>` can be be empty.
 
 
 ```xml
@@ -138,7 +138,6 @@ AppInitializer.java ([source](src/main/java/FreeMarkerTutorials/AppInitializer.j
 
 ```java
 public class AppInitializer implements WebApplicationInitializer {
-
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext context = getContext();
@@ -181,9 +180,7 @@ public CustomFreeMarkerViewResolver freeMarkerViewResolver() {
     resolver.setPrefix("/views/");
     resolver.setSuffix(".ftl");
     resolver.setCache(false); // don't disable the cache in production!
-
     resolver.setContentType("text/html;charset=UTF-8");
-    resolver.setRequestContextAttribute("requestContext");
 
     return resolver;
 }
@@ -197,7 +194,6 @@ public FreeMarkerConfigurer freeMarkerConfigurer(WebApplicationContext applicati
 
     freemarker.template.Configuration configuration = configurer.createConfiguration();
 
-    configuration.addAutoInclude("/templates/include-common.ftl");
     configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
     configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
     configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
@@ -222,12 +218,13 @@ SessionLocaleResolver localeResolver() {
 
 #### Explanations for `freeMarkerViewResolver()`
 
-* ```java
+
+```java
 resolver.setPrefix("/views/");
 resolver.setSuffix(".ftl");
 ```
 
-    This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
+This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
 
 - - -
 
