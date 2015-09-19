@@ -109,9 +109,6 @@ First, a summary of the files and directories:
       webapp/
         WEB-INF/
           ftl/
-            templates/
-              globals.ftl
-              include-common.ftl
             views/
               hello-world.ftl
           web.xml

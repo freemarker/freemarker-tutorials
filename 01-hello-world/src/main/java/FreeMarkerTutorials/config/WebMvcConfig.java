@@ -31,9 +31,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/views/");
         resolver.setSuffix(".ftl");
         resolver.setCache(false); // don't disable the cache in production!
-
         resolver.setContentType("text/html;charset=UTF-8");
-        resolver.setRequestContextAttribute("requestContext");
 
         return resolver;
     }
