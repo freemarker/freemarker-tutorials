@@ -107,11 +107,6 @@ First, a summary of the files and directories:
         AppInitializer.java
     main/
       webapp/
-        static/
-          css/
-            styles.css
-          js/
-            hello-world.js
         WEB-INF/
           ftl/
             templates/
@@ -119,35 +114,26 @@ First, a summary of the files and directories:
               include-common.ftl
             views/
               hello-world.ftl
-          404.html
-          error.html
           web.xml
 ```
 
-All JEE webapps should follow the `/src/main/java` and `/src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this project.)
+All JEE webapps should follow the `/src/main/java` and `/src/main/webapp` directory structure. (Normally there is another folder named `src/main/resources` but we don’t need that for this example.)
 
-### web.xml, 404.html, error.html
+### web.xml
 
-Sources:
+Web.xml ([source](src/main/webapp/WEB-INF/web.xml)) is ([required by Tomcat](http://wiki.metawerx.net/wiki/Web.xml).) We’ll use web.xml in subsequent tutorials. For now the inside of `<web-app></web-app>` can be be empty.
 
-* [web.xml](src/main/webapp/WEB-INF/web.xml)
-* [404.html](src/main/webapp/WEB-INF/404.html)
-* [error.html](src/main/webapp/WEB-INF/error.html)
-
-Web.xml is required by Tomcat ([read more here if you’re curious](http://wiki.metawerx.net/wiki/Web.xml).) The inside of `<web-app></web-app>` can be empty, but I used it to define the error pages:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1" metadata-complete="true">
-    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB-INF/404.html</location>
-    </error-page>
-    <error-page>
-        <location>/WEB-INF/error.html</location>
-    </error-page>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true">
 </web-app>
 ```
+
 
 ### AppInitializer.java
 
@@ -355,7 +341,7 @@ public String loadExample(Model model) {
 
 }
 ```
-This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.  
+This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.
 
 If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
 

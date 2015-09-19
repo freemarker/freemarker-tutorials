@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <title>${pageTitle}</title>
-        <link rel="stylesheet" type="text/css" href="${globals.staticPath}/css/styles.css">
     </head>
     <body>
         <div class="example-page">
@@ -14,6 +13,5 @@
                 <li>¥ | &yen; | &#165;</li>
             </ul>
         </div>
-        <script src="${globals.staticPath}/js/hello-world.js"></script>
     </body>
 </html>

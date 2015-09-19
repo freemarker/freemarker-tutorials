@@ -47,7 +47,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
         freemarker.template.Configuration configuration = configurer.createConfiguration();
 
-        configuration.addAutoInclude("/templates/include-common.ftl");
         configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
         configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
         configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
