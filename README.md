@@ -19,4 +19,3 @@ FreeMarker is a Java templating engine and can be used as a [view resolver](http
     * Configuring FreeMarker settings
     * Ensuring your app has proper UTF-8 charset configuration
     * Deploying to different contexts using Tomcat
-    * Changing locale and time zones using FreeMarker
