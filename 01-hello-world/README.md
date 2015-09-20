@@ -255,39 +255,13 @@ public class HelloWorld {
 
     @RequestMapping("/")
     public String loadExample(Model model) {
+        // Send the variable "pageTitle" to the view.
+        // This can be accessed by ${pageTitle} in the FreeMarker file "hello-world.ftl"
         model.addAttribute("pageTitle", "Example Freemarker Page");
 
+        // When the user navigates to http://<deploy-url>/<context>/, tell the server to use
+        // `/WEB-INF/ftl/views/hello-world.ftl` to render the view
         return "hello-world";
     }
 }
 ```
-
-#### Explanations
-
-```java
-@RequestMapping("/")
-public String loadExample(Model model) {
-
-}
-```
-This tells the server that when a user navigates to http://localhost:8080/hello-world/ that it should use `loadExample` to resolve the view.
-
-If we changed `@RequestMapping("/")` to `@RequestMapping("/xyz/")`, then `loadExample` would get called when the user navigated to http://localhost:8080/hello-world/xyz/.
-
-- - -
-```java
-model.addAttribute("pageTitle", "Example Freemarker Page");
-```
-This adds the attribute `pageTitle` to the model which then gets sent to the view. This can now be used by our FreeMarker template (hello-world.ftl) and we can output the value by writing `${pageTitle}` in hello-world.ftl
-
-- - -
-```java
-return "hello-world";
-```
-This tells the view resolver what file to look for based on our FreeMarker configuration settings. If we changed this to say `return "foo-bar";` then the resolver would look for `/WEB-INF/ftl/views/foo-bar.ftl`.
-
-The view resolver knows to look in `/WEB-INF/ftl/views/` because we specified `resolver.setPrefix("/views/");` in our view resolver and `configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");` in our `FreeMarkerConfigurer` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
-
-Note that we don’t have to specify the file extension because we already specified `resolver.setSuffix(".ftl");` in [WebMvcConfig.java](src/main/java/FreeMarkerTutorials/config/WebMvcConfig.java).
-
-- - -
