@@ -22,6 +22,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        // Look for configuration in /src/main/java/FreeMarkerTutorials/config/
         context.setConfigLocation("FreeMarkerTutorials.config");
         return context;
     }

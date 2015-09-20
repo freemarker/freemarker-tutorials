@@ -177,9 +177,23 @@ Relevant code:
 @Bean
 public CustomFreeMarkerViewResolver freeMarkerViewResolver() {
     CustomFreeMarkerViewResolver resolver = new CustomFreeMarkerViewResolver();
+
+    // Make sure all our views are in /WEB-INF/ftl/views/ and end with *.ftl
+    // This helps keep the views in one place
+    // Note: This is used in conjuction wth
+    //       `configuration.setServletContextForTemplateLoading` below
     resolver.setPrefix("/views/");
     resolver.setSuffix(".ftl");
-    resolver.setCache(false); // don't disable the cache in production!
+
+    // Disable the cache when doing local development
+    // This means that you will see any updates to an FTL file
+    // immediately after refreshing the browser
+    // (don't disable the cache in production!)
+    resolver.setCache(false);
+
+    // When returning a freemarker view, set the charset to UTF-8
+    // and the content-type to text/html
+    // Note: This should always be set by the backend. Don't set this in the view layer!
     resolver.setContentType("text/html;charset=UTF-8");
 
     return resolver;
@@ -194,14 +208,24 @@ public FreeMarkerConfigurer freeMarkerConfigurer(WebApplicationContext applicati
 
     freemarker.template.Configuration configuration = configurer.createConfiguration();
 
+    // Make sure all freemarker files go in /WEB-INF/ftl/
+    // This helps keep the code organized
     configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
-    configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
-    configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
 
+    // When starting a new FreeMarker project, always set the incompatible improvements to the version
+    // you are using.
+    configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
+
+    // Use this for local development. When a template exception occurs,
+    // it will format the error using HTML so it can be easily read
+    configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+
+    // Makre sure everything is UTF-8 from the beginning to avoid headaches
     configuration.setDefaultEncoding("UTF-8");
     configuration.setOutputEncoding("UTF-8");
     configuration.setURLEscapingCharset("UTF-8");
 
+    // Apply the configuration settings to the configurer
     configurer.setConfiguration(configuration);
 
     return configurer;
@@ -209,104 +233,15 @@ public FreeMarkerConfigurer freeMarkerConfigurer(WebApplicationContext applicati
 
 @Bean
 SessionLocaleResolver localeResolver() {
+    // Enable the SessionLocaleResolver
+    // Even if you don't localize your webapp you should still specify this
+    // so that things like numbers, dates, and currencies are formatted properly
     SessionLocaleResolver localeResolver = new SessionLocaleResolver();
     localeResolver.setDefaultLocale(Locale.US);
 
     return localeResolver;
 }
 ```
-
-#### Explanations for `freeMarkerViewResolver()`
-
-
-```java
-resolver.setPrefix("/views/");
-resolver.setSuffix(".ftl");
-```
-
-This tells the view resolver to look for files with a `.ftl` file extension in the `/views/` directory.
-
-- - -
-
-```java
-resolver.setCache(false); // don't disable the cache in production!
-```
-
-By default the view resolver will cache view files. This means that when you edit a FreeMarker file you will not see the changes immediately after refreshing. When you are developing locally it is okay to disable the cache.
-
-- - -
-
-```java
-resolver.setContentType("text/html;charset=UTF-8");
-```
-
-This ensures the content type is text/html and the charset is UTF-8. This should always be set by the backend.
-
-Note: If you’ve used JSP you may have set the encoding like this in a JSP file:
-
-```jsp
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-```
-
-This is a very poor practice and is unfortunately a recommended approach in many JSP tutorials. This is wrong. Content type and encoding should NEVER, **EVER** be set in the view layer. *Ever*.
-
-By setting it in the view you risk ending up with inconsistent encoding across your webapp. Encoding issues quickly spiral out of control and are costly to fix. It is better to have one source of truth for encodings and let the controller handle changing the content type.
-
-- - -
-
-```java
-resolver.setRequestContextAttribute("requestContext");
-```
-
-This specifies how the name we will use to access our application’s `requestContext` properties. More on this later.
-
-#### Explanation for `freeMarkerConfigurer(WebApplicationContext applicationContext)`
-
-```java
-configuration.addAutoInclude("/templates/include-common.ftl");
-```
-
-This tells our FreeMarkerConfigurer to add `/WEB-INF/ftl/templates/include-common.ftl` to every FreeMarker file. It is the same as doing `<@include "/templates/include-common.ftl" />` at the top of every FreeMarker file.
-
-This is useful because it will allow frontend developers to define their own global imports. (This setting is commonly used for defining global layouts or shared macros)
-
-- - -
-
-```java
-configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
-```
-
-This allows us to omit the `/WEB-INF/ftl/` from every FreeMarker path we define. For example if we didn’t include this line we would have to change `resolver.setPrefix("/views/");` to `resolver.setPrefix("/WEB-INF/ftl/views/");`
-
- We’re effectively saying “All our FreeMarker files will always be in this folder”. This also ensures the frontend developers will consistently put all their FreeMarker files in the `ftl` folder.
-
- - - -
-
- ```java
- configuration.setIncompatibleImprovements(freemarker.template.Configuration.VERSION_2_3_23);
- ```
-
- This should always be added for new projects. The FreeMarker documentation [explains it best](http://freemarker.org/docs/pgui_config_incompatible_improvements.html#autoid_44)
-
- - - -
-
-```java
-configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER); // use this for local development
-```
-
-This setting simply formats the stack trace to a more readable format in a web browser. More information can be found in the [FreeMarker documentation](http://freemarker.org/docs/pgui_config_errorhandling.html).
-
-- - -
-
-```java
-configuration.setDefaultEncoding("UTF-8");
-configuration.setOutputEncoding("UTF-8");
-configuration.setURLEscapingCharset("UTF-8");
-```
-
-The explanation for this is simple:
-
-![UTF-8 all the things](images/all-the-things.jpg)
 
 ### HelloWorld.java
 
