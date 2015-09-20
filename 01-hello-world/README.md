@@ -99,8 +99,6 @@ First, a summary of the files and directories:
       FreeMarkerTutorials/
         config/
           AppConfig.java
-          CustomFreeMarkerView.java
-          CustomFreeMarkerViewResolver.java
           WebMvcConfig.java
         controller/
           HelloWorld.java
@@ -175,8 +173,8 @@ Relevant code:
 
 ```java
 @Bean
-public CustomFreeMarkerViewResolver freeMarkerViewResolver() {
-    CustomFreeMarkerViewResolver resolver = new CustomFreeMarkerViewResolver();
+public FreeMarkerViewResolver freeMarkerViewResolver() {
+    FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
 
     // Make sure all our views are in /WEB-INF/ftl/views/ and end with *.ftl
     // This helps keep the views in one place
