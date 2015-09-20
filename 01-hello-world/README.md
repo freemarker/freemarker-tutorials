@@ -65,11 +65,12 @@ This will download the dependencies and compile the Java files.
         ```
 
 3. Inside `hello-world.xml`, add the following (Replace **PATH_TO_FREEMARKER_TUTORIALS** with
-    wherever you have the FreeMarker tutorials project.:
+    wherever you have the FreeMarker tutorials project.):
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
-    <Context docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp" path="" reloadable="true" />
+    <Context docBase="PATH_TO_FREEMARKER_TUTORIALS/01-hello-world/src/main/webapp"
+        path="" reloadable="true" />
     ```
 
 4. You should now be able to access the FreeMarker Hello World webapp at [http://localhost:8080/hello-world/](http://localhost:8080/hello-world/).
