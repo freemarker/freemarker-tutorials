@@ -260,7 +260,7 @@ public class HelloWorld {
 
 ### hello-world.ftl
 
-hello-world.ftl ([source](src/main/webapp/WEB-INF/ftl/views/hello-world.ftl) is our view file.
+hello-world.ftl ([source](src/main/webapp/WEB-INF/ftl/views/hello-world.ftl)) is our view file.
 
 Relevant code:
 
