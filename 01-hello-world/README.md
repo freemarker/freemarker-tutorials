@@ -12,21 +12,13 @@ If you aren’t sure how to run Tomcat locally, please review the tutorial on [r
 * [Spring MVC 4.2](https://spring.io/blog/2015/07/31/spring-framework-4-2-goes-ga)
 * Javax Servlet API 3.1.0
 
-## Tutorial notes
-
-This project contains mostly the *minimum* dependencies for a FreeMarker webapp. Other staple dependencies like [log4j](http://logging.apache.org/log4j/2.x/) and [Joda time](http://www.joda.org/joda-time/) will be used in subsequent tutorials.
-
-First we will set up and run the project, then we will go into details on what each file does.
-
-### UTF-8
+## A Note About UTF-8
 
 Everything in this project will be configured using UTF-8 charset. When making a new webapp, it is crucial you set up your project to have consistent UTF-8 file encodings.
 
-If you don’t, you risk your site having embarrassing encoding issues (ever seen a site with words like "donâ€™t" instead of "don’t"? Yeah, awkward.) It’s also a huge pain to go back and fix encoding issues, so just use **UTF-8 for everything from the start**.
+If you don’t consistently use UTF-8, you risk embarrassing encoding issues (ever seen a site with words like "donâ€™t" instead of "don’t"? Yeah, awkward.) It’s also a huge pain to go back and fix encoding issues, so just use **UTF-8 for everything from the start**.
 
-Every editor is different and some set different default encodings for different file types. For example if you’re using Eclipse, go through **each file type** and make sure the default encoding is set to UTF-8 for each extension:
-
-![UTF-8 Eclipse](images/eclipse-utf-8.png)
+Every editor is different and some set different default encodings for different file types. For example if you’re using Eclipse, go through **each file type** and make sure the default encoding is set to UTF-8 for each extension.
 
 ## Step 1: Download or clone the FreeMarker Tutorials project
 
