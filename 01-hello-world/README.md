@@ -133,7 +133,8 @@ public class AppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
+        ServletRegistration.Dynamic dispatcher =
+                servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }
@@ -202,7 +203,8 @@ public FreeMarkerConfigurer freeMarkerConfigurer(WebApplicationContext applicati
 
     // Make sure all freemarker files go in /WEB-INF/ftl/
     // This helps keep the code organized
-    configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(), "/WEB-INF/ftl/");
+    configuration.setServletContextForTemplateLoading(applicationContext.getServletContext(),
+            "/WEB-INF/ftl/");
 
     // When starting a new FreeMarker project, always set the incompatible improvements to the version
     // you are using.
