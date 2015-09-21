@@ -172,7 +172,7 @@ public FreeMarkerViewResolver freeMarkerViewResolver() {
 
     // Make sure all our views are in /WEB-INF/ftl/views/ and end with *.ftl
     // This helps keep the views in one place
-    // Note: This is used in conjuction wth
+    // Note: This is used in conjuction with
     //       `configuration.setServletContextForTemplateLoading` below
     resolver.setPrefix("/views/");
     resolver.setSuffix(".ftl");
