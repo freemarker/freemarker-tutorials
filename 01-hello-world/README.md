@@ -4,7 +4,7 @@ Here we will set up a very basic FreeMarker webapp using [Spring MVC](http://spr
 
 This tutorial assumes you have a Tomcat server running locally (or a server you’re comfortable configuring on your own.)
 
-If you aren’t sure how to run Tomcat locally, please review the [Running a server locally](../00-running-a-server-locally) tutorial.
+If you aren’t sure how to run Tomcat locally, please review the tutorial on [running a Tomcat server locally](../00-running-a-server-locally).
 
 **Libraries Used**
 
@@ -148,7 +148,8 @@ public class AppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("FreeMarkerTutorials.config"); // this maps to src/main/java/FreeMarkerTutorials/config/
+        // Look for configuration in /src/main/java/FreeMarkerTutorials/config/
+        context.setConfigLocation("FreeMarkerTutorials.config");
         return context;
     }
 }
