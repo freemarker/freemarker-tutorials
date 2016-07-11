@@ -52,7 +52,7 @@ At the time of this writing, the latest stable version of Tomcat is 8.0.26.
 
 6. Click “OK” and “OK” again and “OK” one last time to exit out of environment variables.
 
-7. Open up command prompt and type `echo %CATALINA_HOMEx% && where catalina` and you should see something like this:
+7. Open up command prompt and type `echo %CATALINA_HOME% && where catalina` and you should see something like this:
 
     ![step 6](images/tomcat06.png)
 
